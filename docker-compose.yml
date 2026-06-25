@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_product_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: products_db
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql_product_data:/var/lib/mysql
+
+  product-service:
+    build: .
+    container_name: product_service
+    ports:
+      - "8082:8082"
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_product_data:
