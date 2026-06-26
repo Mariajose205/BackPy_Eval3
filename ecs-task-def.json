@@ -1,16 +1,16 @@
 {
   "family": "product-service",
   "networkMode": "awsvpc",
-  "requiresCompatibilities": ["EC2"],
-  "cpu": "256",
-  "memory": "512",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "512",
+  "memory": "1024",
   "containerDefinitions": [
     {
       "name": "product-service",
-      "image": "304023817300.dkr.ecr.us-east-1.amazonaws.com/product-service:latest",
+      "image": "123456789012.dkr.ecr.us-east-1.amazonaws.com/product-service:latest",
       "essential": true,
       "portMappings": [
-        { "containerPort": 8082, "hostPort": 8082 }
+        { "containerPort": 8082 }
       ],
       "environment": [
         { "name": "DB_HOST", "value": "database-2.cqy6gu0tj17i.us-east-1.rds.amazonaws.com" },
@@ -23,7 +23,7 @@
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/ecs/product-service",
+          "awslogs-group": "/ecs/back_producto_devops-service",
           "awslogs-region": "us-east-1",
           "awslogs-stream-prefix": "ecs"
         }
@@ -31,3 +31,4 @@
     }
   ]
 }
+
