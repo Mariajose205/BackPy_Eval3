@@ -38,6 +38,6 @@ jobs:
         with:
           task-definition: ecs-task-def.json
           service: product-service
-          cluster: product-cluster
+          cluster: humble-fox-wukd3o
           wait-for-service-stability: true
 
