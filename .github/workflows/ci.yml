@@ -37,7 +37,7 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ecs-task-def.json
-          service: product-service
+          service: back_producto_devops-service
           cluster: humble-fox-wukd3o
           wait-for-service-stability: true
 
