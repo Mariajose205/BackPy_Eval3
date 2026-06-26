@@ -1,0 +1,33 @@
+{
+  "family": "product-service",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["EC2"],
+  "cpu": "256",
+  "memory": "512",
+  "containerDefinitions": [
+    {
+      "name": "product-service",
+      "image": "304023817300.dkr.ecr.us-east-1.amazonaws.com/product-service:latest",
+      "essential": true,
+      "portMappings": [
+        { "containerPort": 8082, "hostPort": 8082 }
+      ],
+      "environment": [
+        { "name": "DB_HOST", "value": "database-2.cqy6gu0tj17i.us-east-1.rds.amazonaws.com" },
+        { "name": "DB_PORT", "value": "3306" },
+        { "name": "DB_USER", "value": "admin" },
+        { "name": "DB_PASSWORD", "value": "passwordadmin123" },
+        { "name": "DB_NAME", "value": "products_db" },
+        { "name": "PORT", "value": "8082" }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/product-service",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]
+}
